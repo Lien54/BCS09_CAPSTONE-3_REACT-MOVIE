@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Tabs } from "antd";
 import { quanLyRapServ } from "../../services/quanLyRapServ";
-import "../../assets/lichChieuCumRap.css";
+import "../../assets/css/lichChieuCumRap.css";
 import moment from "moment";
 
 const LichChieuCumRap = ({ maHeThongRap }) => {

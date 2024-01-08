@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import { quanLyPhimServ } from "../../services/quanLyPhimServ";
+import { useDispatch } from "react-redux";
+import { endedLoading, startedLoading } from "../../redux/slice/loadingSlice";
 
 const contentStyle = {
   margin: 0,
@@ -50,24 +52,27 @@ function SamplePrevArrow(props) {
 }
 
 const Banner = () => {
+  const dispatch = useDispatch();
   const setting = {
     autoplay: true,
     arrows: true,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-
   const [listBanner, setListBanner] = useState([]);
 
   useEffect(() => {
+    dispatch(startedLoading())
     quanLyPhimServ
       .getAllBanner()
       .then((res) => {
         console.log(res);
+        dispatch(endedLoading())
         setListBanner(res.data.content);
       })
       .catch((err) => {
         console.log(err);
+        dispatch(endedLoading())
       });
   }, []);
 

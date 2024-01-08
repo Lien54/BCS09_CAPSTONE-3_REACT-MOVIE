@@ -2,27 +2,29 @@ import React, { useEffect, useState } from "react";
 import { quanLyPhimServ } from "../../services/quanLyPhimServ";
 import { Space, Table, Tag } from "antd";
 import { Button, message, Popconfirm } from "antd";
+import { getAllMovieThunk } from "../../redux/slice/movieSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const MovieManage = () => {
-  const [listMovie, setListMovie] = useState([]);
+  const dispatch = useDispatch();
+  const { listMovie } = useSelector((state) => state.movieSlice);
+  // const [listMovie, setListMovie] = useState([]);
+  console.log(listMovie);
 
-  const confirm = (e) => {
-    console.log(e);
-    message.success("Click on Yes");
-  };
-  const cancel = (e) => {
-    console.log(e);
-    message.error("Click on No");
-  };
+  // const confirm = (e) => {
+  //   console.log(e);
+  //   message.success("Click on Yes");
+  // };
+  // const cancel = (e) => {
+  //   console.log(e);
+  //   message.error("Click on No");
+  // };
 
   const columns = [
     {
       title: "Mã phim",
       dataIndex: "maPhim",
-      key: "name",
-      // render: (text, record, index) => {
-      //   console.log(record);
-      // },
+      key: "maPhim",
     },
     {
       title: "Hình ảnh",
@@ -54,48 +56,55 @@ const MovieManage = () => {
             <button className="mr-2 text-lg text-yellow-700">
               <i className="fa-solid fa-pen-to-square"></i>
             </button>
-            <Popconfirm
+            {/* <Popconfirm
               title="Bạn có chắc xóa phim này?"
               description="Are you sure to delete this task?"
               onConfirm={confirm}
               onCancel={cancel}
               okText="Yes"
               cancelText="No"
-            >
-              <button
-                danger
-                onClick={() => {
-                  quanLyPhimServ
-                    .deleteMovie(record.maPhim)
-                    .then(() => {
-                      quanLyPhimServ.getAllMovies().then((res) => {
-                        setListMovie(res.data.content);
-                      });
-                    })
-                    .catch((err) => {
-                      console.log(err);
+            > */}
+            <button
+              // danger
+              onClick={() => {
+                quanLyPhimServ
+                  .deleteMovie(record.maPhim)
+                  .then(() => {
+                    quanLyPhimServ.getAllMovies().then((res) => {
+                      // setListMovie(res.data.content);
+                      dispatch(getAllMovieThunk());
                     });
-                }}
-                className="text-lg text-red-400"
-              >
-                <i className="fa-solid fa-trash"></i>
-              </button>
-            </Popconfirm>
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+              className="text-lg text-red-400"
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+            {/* </Popconfirm> */}
           </div>
         );
       },
     },
   ];
   useEffect(() => {
-    quanLyPhimServ
-      .getAllMovies()
-      .then((res) => {
-        console.log(res);
-        setListMovie(res.data.content);
+    // quanLyPhimServ
+    //   .getAllMovies()
+    //   .then((res) => {
+    //     console.log(res);
+    //     setListMovie(res.data.content);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    dispatch(
+      getAllMovieThunk({
+        // hoTen: 'Đông',
+        // gioiTinh: 'Nam',
       })
-      .catch((err) => {
-        console.log(err);
-      });
+    )
   }, []);
 
   return (

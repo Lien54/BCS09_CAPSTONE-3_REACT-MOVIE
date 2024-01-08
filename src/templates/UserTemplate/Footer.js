@@ -1,4 +1,5 @@
 import React from "react";
+import "./../../pages/HomePage/DanhSachPhim"
 
 const Footer = () => {
   return (
@@ -13,7 +14,7 @@ const Footer = () => {
                 alt="FlowBite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Flowbite
+                Go Cinema
               </span>
             </a>
           </div>
@@ -24,16 +25,16 @@ const Footer = () => {
               </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a href="https://flowbite.com/" className="hover:underline">
-                    Flowbite
+                  <a href="#" className="hover:underline">
+                    Cinema
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://tailwindcss.com/"
+                    href="#"
                     className="hover:underline"
                   >
-                    Tailwind CSS
+                    Group theathe
                   </a>
                 </li>
               </ul>
@@ -45,18 +46,18 @@ const Footer = () => {
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <a
-                    href="https://github.com/themesberg/flowbite"
+                    href="#"
                     className="hover:underline "
                   >
-                    Github
+                    Facebook
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://discord.gg/4eeurUVvTy"
+                    href="#"
                     className="hover:underline"
                   >
-                    Discord
+                    Website
                   </a>
                 </li>
               </ul>
@@ -85,7 +86,7 @@ const Footer = () => {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
             <a href="https://flowbite.com/" className="hover:underline">
-              Flowbite™
+              Go Cinema™
             </a>
             . All Rights Reserved.
           </span>

@@ -9,6 +9,9 @@ import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import MovieManage from "./pages/MovieManage/MovieManage";
 import UserManager from "./pages/UserManager/UserManager";
 import UserOrder from "./pages/UserOrder/UserOrder";
+import AddMovie from "./pages/AddMovie/AddMovie";
+import Page404 from "./pages/Page404/Page404";
+import Detail from "./pages/Detail/Detail";
 
 function App() {
   return (
@@ -16,14 +19,17 @@ function App() {
       <Routes>
         <Route element={<UserTemplate />} path="/">
           <Route element={<HomePage />} index></Route>
+          <Route element={<Detail />} path="detail-film"></Route>
         </Route>
         <Route element={<AdminTemplate />} path="/admin">
-          <Route index element={<MovieManage />}/>
+          <Route index element={<MovieManage />} />
           <Route path="manager-user" element={<UserManager />} />
           <Route path="manager-order" element={<UserOrder />} />
+          <Route path="add-movie" element={<AddMovie />} />
         </Route>
-        <Route element={<Login />} path="/login"/>
+        <Route element={<Login />} path="/login" />
         {/* page 404 */}
+        <Route element={<Page404 />} path="*" />
       </Routes>
     </>
   );
