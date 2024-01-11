@@ -3,7 +3,9 @@ import { Carousel } from "antd";
 import { Button, Card } from "antd";
 import Slider from "react-slick";
 import { quanLyPhimServ } from "../../services/quanLyPhimServ";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import FilmItem from "./FilmItem";
 
 const contentStyle = {
   margin: 0,
@@ -52,7 +54,7 @@ function SamplePrevArrow(props) {
   );
 }
 
-const DanhSachPhim = ({ maPhim }) => {
+const DanhSachPhim = () => {
   const setting = {
     className: "center variable-width",
     autoplay: true,
@@ -71,6 +73,8 @@ const DanhSachPhim = ({ maPhim }) => {
   };
 
   const [phim, setPhim] = useState([]);
+  const dispatch = useDispatch;
+
   useEffect(() => {
     quanLyPhimServ
       .getAllMovies()
@@ -81,35 +85,18 @@ const DanhSachPhim = ({ maPhim }) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [maPhim]);
+  }, []);
 
   return (
     <div className="container">
-      <h2>Multiple Rows</h2>
       <Slider {...setting}>
         {phim.map((item, index) => {
           return (
             <div className="danhSachPhim" key="index">
-              <Card style={{ width: 300, height: 480 }}>
-                <img
-                  className="rounded-t-lg w-72 h-80"
-                  alt=""
-                  src={item.hinhAnh}
-                />
-                <div className="flex p-5">
-                  <a href="#">
-                    <h5 className="text-xl font-bold tracking-tight text-orange-600">
-                      C18
-                    </h5>
-                  </a>
-                  <p className="ms-3 text-xl font-bold tracking-tight text-gray-900 truncate">
-                    {item.tenPhim}
-                  </p>
-                </div>
-                <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-orange-500 rounded-lg hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                  <Link to={"/detail-film"} className="text-white">Đặt vé</Link>
-                </button>
-              </Card>
+              <NavLink to={`/detail-film/${item.maPhim}`}>
+                <FilmItem props={item} />
+              </NavLink>
+              
             </div>
           );
         })}

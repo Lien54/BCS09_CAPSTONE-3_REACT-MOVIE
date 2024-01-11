@@ -29,7 +29,7 @@ const LichChieuCumRap = ({ maHeThongRap }) => {
         items={cumRap.map((item, index) => {
           return {
             label: (
-              <div className="text-left space-y-2">
+              <div className="text-left space-y-2" key="index">
                 <h4 className="truncate text-green-600 uppercase font-medium">
                   {item.tenCumRap}
                 </h4>

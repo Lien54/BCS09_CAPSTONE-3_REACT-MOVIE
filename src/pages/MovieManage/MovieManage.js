@@ -71,7 +71,6 @@ const MovieManage = () => {
                   .deleteMovie(record.maPhim)
                   .then(() => {
                     quanLyPhimServ.getAllMovies().then((res) => {
-                      // setListMovie(res.data.content);
                       dispatch(getAllMovieThunk());
                     });
                   })
@@ -90,19 +89,9 @@ const MovieManage = () => {
     },
   ];
   useEffect(() => {
-    // quanLyPhimServ
-    //   .getAllMovies()
-    //   .then((res) => {
-    //     console.log(res);
-    //     setListMovie(res.data.content);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     dispatch(
       getAllMovieThunk({
-        // hoTen: 'Đông',
-        // gioiTinh: 'Nam',
+
       })
     )
   }, []);

@@ -17,7 +17,10 @@ export const quanLyPhimServ = {
     return https.post("/api/QuanLyPhim/ThemPhimUploadHinh", data);
   },
 
-  getDetailFilm: (maPhim) => {
-    return https.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`)
-  }
+  // getDetailFilm: (maPhim) => {
+  //   return https.get(`/api/QuanLyPhim/LayThongTinLichChieuPhim?MaPhim=${maPhim}`)
+  // },
+  getInfoMovie: (maPhim) => {
+    return https.get(`/api/QuanLyPhim/LayThongTinPhim?MaPhim=${maPhim}`);
+  },
 };
